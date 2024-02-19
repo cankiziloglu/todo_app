@@ -1,11 +1,5 @@
+import { buttons } from '../lib/constants';
 import Button from './ui/button';
-
-const buttons = [
-  'Mark all as complete',
-  'Mark all as incomplete',
-  'Reset',
-  'Remove all Items',
-];
 
 const ButtonGroup = () => {
   return (
