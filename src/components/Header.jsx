@@ -2,7 +2,7 @@ const Header = () => {
   return (
     <header>
       <img />
-      <p>
+      <p className="counter">
         <b>1</b> / 3 items completed
       </p>
     </header>

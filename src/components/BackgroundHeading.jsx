@@ -1,5 +1,5 @@
 const BackgroundHeading = () => {
-  return <div className='background_heading'>To-Do App</div>;
+  return <h1>TO-DO APP</h1>;
 };
 
 export default BackgroundHeading;

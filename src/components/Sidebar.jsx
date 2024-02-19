@@ -3,7 +3,7 @@ import ButtonGroup from './ButtonGroup';
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className='sidebar'>
       <AddItemForm />
       <ButtonGroup />
     </div>
