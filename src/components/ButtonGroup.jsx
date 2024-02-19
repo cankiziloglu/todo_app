@@ -1,14 +1,25 @@
-import { buttons } from '../lib/constants';
 import Button from './ui/button';
 
-const ButtonGroup = () => {
+const ButtonGroup = ({
+  handleMarkAllAsComplete,
+  handleMarkAllAsIncomplete,
+  handleReset,
+  handleRemoveAll,
+}) => {
   return (
     <div className='button-group'>
-      {buttons.map((button, index) => (
-        <Button key={index} type='btn-sec'>
-          {button}
-        </Button>
-      ))}
+      <Button onClick={handleMarkAllAsComplete} type='btn-sec'>
+        Mark All As Complete
+      </Button>
+      <Button onClick={handleMarkAllAsIncomplete} type='btn-sec'>
+        Mark All As Incomplete
+      </Button>
+      <Button onClick={handleReset} type='btn-sec'>
+        Reset
+      </Button>
+      <Button onClick={handleRemoveAll} type='btn-sec'>
+        Remove All Items
+      </Button>
     </div>
   );
 };

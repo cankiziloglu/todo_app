@@ -1,9 +1,9 @@
-const Header = () => {
+const Header = ({ itemsTotal, itemsComplete }) => {
   return (
     <header>
       <img />
-      <p className="counter">
-        <b>1</b> / 3 items completed
+      <p className='counter'>
+        <b>{itemsComplete}</b> / {itemsTotal} items completed
       </p>
     </header>
   );
