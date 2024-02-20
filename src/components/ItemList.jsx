@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import EmptyView from './EmptyView';
 import Select from 'react-select';
 
@@ -11,15 +11,19 @@ const ItemList = ({ items, handleRemoveItem, handleToggleItem }) => {
 
   const [sortBy, setSortBy] = useState('default');
 
-  const sortedItems = [...items].sort((a, b) => {
-    if (sortBy === 'completed') {
-      return b.completed - a.completed;
-    }
-    if (sortBy === 'uncompleted') {
-      return a.completed - b.completed;
-    }
-    return;
-  });
+  const sortedItems = useMemo(
+    () =>
+      [...items].sort((a, b) => {
+        if (sortBy === 'completed') {
+          return b.completed - a.completed;
+        }
+        if (sortBy === 'uncompleted') {
+          return a.completed - b.completed;
+        }
+        return;
+      }),
+    [items, sortBy]
+  );
 
   return (
     <ul className='item-list'>
