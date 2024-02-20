@@ -1,7 +1,7 @@
-import { useTasksContext } from '../lib/hooks';
+import { useTaskStore } from '../stores/TaskStore';
 
 const Header = () => {
-  const { tasks } = useTasksContext();
+  const tasks = useTaskStore((state) => state.tasks);
 
   return (
     <header>

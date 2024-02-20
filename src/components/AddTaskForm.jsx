@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react';
 import Button from './ui/button';
-import { useTasksContext } from '../lib/hooks';
+import { useTaskStore } from '../stores/TaskStore';
 
 const AddTaskForm = () => {
   const [taskText, setTaskText] = useState('');
   const [error, setError] = useState(false);
   const inputRef = useRef(null);
 
-  const { handleAddTask } = useTasksContext();
+  const addTask = useTaskStore((state) => state.addTask);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const AddTaskForm = () => {
       return;
     }
     setError(false);
-    handleAddTask(taskText);
+    addTask(taskText);
     setTaskText('');
     inputRef.current.focus();
   };

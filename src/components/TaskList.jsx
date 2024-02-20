@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import EmptyView from './EmptyView';
 import Select from 'react-select';
-import { useTasksContext } from '../lib/hooks';
+import { useTaskStore } from '../stores/TaskStore';
 
 const TaskList = () => {
   const sortingOptions = [
@@ -10,7 +10,9 @@ const TaskList = () => {
     { value: 'uncompleted', label: 'Sort by uncompleted' },
   ];
 
-  const { tasks, handleRemoveTask, handleToggleTask } = useTasksContext();
+  const tasks = useTaskStore((state) => state.tasks);
+  const removeTask = useTaskStore((state) => state.removeTask);
+  const toggleTask = useTaskStore((state) => state.toggleTask);
 
   const [sortBy, setSortBy] = useState('default');
 
@@ -46,11 +48,11 @@ const TaskList = () => {
             <input
               type='checkbox'
               checked={task.completed}
-              onChange={() => handleToggleTask(task.id)}
+              onChange={() => toggleTask(task.id)}
             />
             <span>{task.name}</span>
           </label>
-          <button onClick={() => handleRemoveTask(task.id)}>❌</button>
+          <button onClick={() => removeTask(task.id)}>❌</button>
         </li>
       ))}
     </ul>
