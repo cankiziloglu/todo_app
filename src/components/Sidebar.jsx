@@ -1,8 +1,8 @@
-import AddItemForm from './AddItemForm';
+import AddTaskForm from './AddTaskForm';
 import ButtonGroup from './ButtonGroup';
 
 const Sidebar = ({
-  handleAddItem,
+  handleAddTask,
   handleMarkAllAsComplete,
   handleMarkAllAsIncomplete,
   handleReset,
@@ -10,7 +10,7 @@ const Sidebar = ({
 }) => {
   return (
     <div className='sidebar'>
-      <AddItemForm onAddItem={handleAddItem} />
+      <AddTaskForm onAddTask={handleAddTask} />
       <ButtonGroup
         handleMarkAllAsComplete={handleMarkAllAsComplete}
         handleMarkAllAsIncomplete={handleMarkAllAsIncomplete}

@@ -2,77 +2,77 @@ import { useEffect, useState } from 'react';
 import BackgroundHeading from './components/BackgroundHeading';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import ItemList from './components/ItemList';
+import TaskList from './components/TaskList';
 import Sidebar from './components/Sidebar';
-import { initialItems } from './lib/constants';
+import { initialTasks } from './lib/constants';
 
 function App() {
-  const [items, setItems] = useState(
-    () => JSON.parse(localStorage.getItem('items')) || initialItems
+  const [tasks, setTasks] = useState(
+    () => JSON.parse(localStorage.getItem('tasks')) || initialTasks
   );
 
-  const handleAddItem = (newItemText) => {
-    const newItem = {
+  const handleAddTask = (newTaskText) => {
+    const newTask = {
       id: new Date().getTime(),
-      name: newItemText,
+      name: newTaskText,
       completed: false,
     };
-    const newItems = [...items, newItem];
-    setItems(newItems);
+    const newTasks = [...tasks, newTask];
+    setTasks(newTasks);
   };
 
-  const handleRemoveItem = (itemId) => {
-    const newItems = items.filter((item) => item.id !== itemId);
-    setItems(newItems);
+  const handleRemoveTask = (taskId) => {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(newTasks);
   };
 
-  const handleToggleItem = (itemId) => {
-    const newItems = items.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, completed: !item.completed };
+  const handleToggleTask = (taskId) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, completed: !task.completed };
       }
-      return item;
+      return task;
     });
-    setItems(newItems);
+    setTasks(newTasks);
   };
 
   const handleMarkAllAsComplete = () => {
-    const newItems = items.map((item) => ({ ...item, completed: true }));
-    setItems(newItems);
+    const newTasks = tasks.map((task) => ({ ...task, completed: true }));
+    setTasks(newTasks);
   };
 
   const handleMarkAllAsIncomplete = () => {
-    const newItems = items.map((item) => ({ ...item, completed: false }));
-    setItems(newItems);
+    const newTasks = tasks.map((task) => ({ ...task, completed: false }));
+    setTasks(newTasks);
   };
 
   const handleReset = () => {
-    setItems(initialItems);
+    setTasks(initialTasks);
   };
 
   const handleRemoveAll = () => {
-    setItems([]);
+    setTasks([]);
   };
 
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
       <BackgroundHeading />
       <main>
         <Header
-          itemsTotal={items.length}
-          itemsComplete={items.filter((item) => item.completed).length}
+          tasksTotal={tasks.length}
+          tasksComplete={tasks.filter((task) => task.completed).length}
         />
-        <ItemList
-          items={items}
-          handleRemoveItem={handleRemoveItem}
-          handleToggleItem={handleToggleItem}
+        <TaskList
+          tasks={tasks}
+          handleRemoveTask={handleRemoveTask}
+          handleToggleTask={handleToggleTask}
         />
         <Sidebar
-          handleAddItem={handleAddItem}
+          handleAddTask={handleAddTask}
           handleMarkAllAsComplete={handleMarkAllAsComplete}
           handleMarkAllAsIncomplete={handleMarkAllAsIncomplete}
           handleReset={handleReset}

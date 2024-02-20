@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import EmptyView from './EmptyView';
 import Select from 'react-select';
 
-const ItemList = ({ items, handleRemoveItem, handleToggleItem }) => {
+const TaskList = ({ tasks, handleRemoveTask, handleToggleTask }) => {
   const sortingOptions = [
     { value: 'default', label: 'Sort by default' },
     { value: 'completed', label: 'Sort by completed' },
@@ -11,9 +11,9 @@ const ItemList = ({ items, handleRemoveItem, handleToggleItem }) => {
 
   const [sortBy, setSortBy] = useState('default');
 
-  const sortedItems = useMemo(
+  const sortedTasks = useMemo(
     () =>
-      [...items].sort((a, b) => {
+      [...tasks].sort((a, b) => {
         if (sortBy === 'completed') {
           return b.completed - a.completed;
         }
@@ -22,13 +22,13 @@ const ItemList = ({ items, handleRemoveItem, handleToggleItem }) => {
         }
         return;
       }),
-    [items, sortBy]
+    [tasks, sortBy]
   );
 
   return (
-    <ul className='item-list'>
-      {items.length === 0 && <EmptyView />}
-      {items.length > 0 && (
+    <ul className='task-list'>
+      {tasks.length === 0 && <EmptyView />}
+      {tasks.length > 0 && (
         <section className='sorting'>
           <Select
             options={sortingOptions}
@@ -37,21 +37,21 @@ const ItemList = ({ items, handleRemoveItem, handleToggleItem }) => {
           />
         </section>
       )}
-      {sortedItems.map((item) => (
-        <li key={item.id} className='item'>
+      {sortedTasks.map((task) => (
+        <li key={task.id} className='task'>
           <label>
             <input
               type='checkbox'
-              checked={item.completed}
-              onChange={() => handleToggleItem(item.id)}
+              checked={task.completed}
+              onChange={() => handleToggleTask(task.id)}
             />
-            <span>{item.name}</span>
+            <span>{task.name}</span>
           </label>
-          <button onClick={() => handleRemoveItem(item.id)}>❌</button>
+          <button onClick={() => handleRemoveTask(task.id)}>❌</button>
         </li>
       ))}
     </ul>
   );
 };
 
-export default ItemList;
+export default TaskList;

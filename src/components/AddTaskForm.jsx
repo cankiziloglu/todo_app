@@ -1,42 +1,42 @@
 import { useRef, useState } from 'react';
 import Button from './ui/button';
 
-const AddItemForm = ({ onAddItem }) => {
-  const [itemText, setItemText] = useState('');
+const AddTaskForm = ({ onAddTask }) => {
+  const [taskText, setTaskText] = useState('');
   const [error, setError] = useState(false);
   const inputRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // validate the input
-    if (!itemText) {
+    if (!taskText) {
       setError(true);
       inputRef.current.focus();
       return;
     }
     setError(false);
-    onAddItem(itemText);
-    setItemText('');
+    onAddTask(taskText);
+    setTaskText('');
     inputRef.current.focus();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add an Item</h2>
+      <h2>Add a Task</h2>
       <input
         ref={inputRef}
         type='text'
-        placeholder='Item name'
-        value={itemText}
+        placeholder='Task name'
+        value={taskText}
         onChange={(e) => {
           setError(false);
-          setItemText(e.target.value);
+          setTaskText(e.target.value);
         }}
       />
-      {error && <p className='error'>Please enter an item name</p>}
+      {error && <p className='error'>Please enter a task name</p>}
       <Button>Add to List</Button>
     </form>
   );
 };
 
-export default AddItemForm;
+export default AddTaskForm;

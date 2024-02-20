@@ -1,4 +1,4 @@
-export const initialItems = [
+export const initialTasks = [
   {
     id: 1,
     name: 'Meditate',
@@ -20,5 +20,5 @@ export const buttons = [
   'Mark all as complete',
   'Mark all as incomplete',
   'Reset',
-  'Remove all Items',
+  'Remove all Tasks',
 ];

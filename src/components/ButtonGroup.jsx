@@ -18,7 +18,7 @@ const ButtonGroup = ({
         Reset
       </Button>
       <Button onClick={handleRemoveAll} type='btn-sec'>
-        Remove All Items
+        Remove All Tasks
       </Button>
     </div>
   );
