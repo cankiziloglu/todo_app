@@ -1,13 +1,16 @@
 import { useMemo, useState } from 'react';
 import EmptyView from './EmptyView';
 import Select from 'react-select';
+import { useTasksContext } from '../lib/hooks';
 
-const TaskList = ({ tasks, handleRemoveTask, handleToggleTask }) => {
+const TaskList = () => {
   const sortingOptions = [
     { value: 'default', label: 'Sort by default' },
     { value: 'completed', label: 'Sort by completed' },
     { value: 'uncompleted', label: 'Sort by uncompleted' },
   ];
+
+  const { tasks, handleRemoveTask, handleToggleTask } = useTasksContext();
 
   const [sortBy, setSortBy] = useState('default');
 

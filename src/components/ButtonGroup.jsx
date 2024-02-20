@@ -1,11 +1,14 @@
+import { useTasksContext } from '../lib/hooks';
 import Button from './ui/button';
 
-const ButtonGroup = ({
-  handleMarkAllAsComplete,
-  handleMarkAllAsIncomplete,
-  handleReset,
-  handleRemoveAll,
-}) => {
+const ButtonGroup = () => {
+  const {
+    handleMarkAllAsComplete,
+    handleMarkAllAsIncomplete,
+    handleReset,
+    handleRemoveAll,
+  } = useTasksContext();
+
   return (
     <div className='button-group'>
       <Button onClick={handleMarkAllAsComplete} type='btn-sec'>
